@@ -1,0 +1,23 @@
+language: node_js
+node_js:
+  - 'latest'
+cache: 
+  directories:
+    - node_modules
+    - ~/.npm
+
+stages:
+  - production
+  - staging
+  - name: test
+    if branch = staging
+
+jobs:
+  include:
+    - stage: test
+      script: 
+        - echo 'Dentro del Estado de pruebas'
+        - echo 'Ejecuto la instalación de los componentes'
+        - npm install
+        - echo 'Ya instale ahora hago las pruebas'
+        - echo type
