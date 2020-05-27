@@ -10,7 +10,7 @@ stages:
   - production
   - staging
   - name: test
-    if branch = staging
+    if: type = push AND branch = staging
 
 jobs:
   include:
