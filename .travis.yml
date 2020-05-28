@@ -32,8 +32,10 @@ jobs:
         secret_access_key: $AWS_SECRET_ACCESS_KEY
         skip_cleanup: true
         keep_history: true
-        bucket: 'sec.anjrot.cl'
+        bucket: 'prueba-deploy'
         local_dir: dist/
+        on:
+          branch: staging
 
     - stage: production
       script:
@@ -49,5 +51,7 @@ jobs:
         keep_history: true
         bucket: 'sec.anjrot.cl'
         local_dir: dist/
+        on:
+          branch: master
 
   
