@@ -19,25 +19,17 @@ jobs:
         - npm run build
       branches:
         - staging
-    - stage: production
-      script:
-        - echo 'Aquí debería ejecutar npm run test'
-        - echo "si todos los tests pasan seguimos adelante"
-      after_success:
-        - npm run build
-      branches:
-        - master
         
     - stage: deploy
-        provider: s3
-        access_key_id: $AWS_ACCESS_KEY
-        secret_access_key: $AWS_SECRET_ACCESS_KEY
-        if: branch = master
-        bucket: 'sec.anjrot.cl'
-        if: branch = staging
-        bucket: 'prueba-deploy'
-        skip_cleanup: true
-        local_dir: dist/
-        commit_message: 'Deploy del proyecto'
+      provider: s3
+      access_key_id: $AWS_ACCESS_KEY
+      secret_access_key: $AWS_SECRET_ACCESS_KEY
+      if: branch = master
+      bucket: 'sec.anjrot.cl'
+      if: branch = staging
+      bucket: 'prueba-deploy'
+      skip_cleanup: true
+      local_dir: dist/
+      commit_message: 'Deploy del proyecto'
 
   
