@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: 'Ejecutando los nuevos pipelines',
+  name: 'Ejecutando los nuevos pipelines    Otra vez no pasa nada!!!',
   props: {
     msg: String
   }
