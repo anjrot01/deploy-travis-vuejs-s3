@@ -21,3 +21,16 @@ jobs:
         - npm install
         - echo 'Ya instale ahora hago las pruebas'
         - echo type
+    - stage: staging
+      script:
+        - npm run build
+      deploy: 
+        provider: s3
+        access_key_id: $AWS_ACCESS_KEY
+        secret_access_key: $AWS_SECRET_ACCESS_KEY
+        bucket: 'sec.anjrot.cl'
+        skip_cleanup: true
+        local_dir: dist/
+        commit_message: 'Deploy del proyecto'
+        on:
+          branch: staging
