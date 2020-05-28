@@ -18,15 +18,11 @@ jobs:
       after_success:
         - npm run build
       branches:
-        - staging
-        
-    - stage: deploy
+        - staging        
+      deploy:
       provider: s3
       access_key_id: $AWS_ACCESS_KEY
       secret_access_key: $AWS_SECRET_ACCESS_KEY
-      if: branch = master
-      bucket: 'sec.anjrot.cl'
-      if: branch = staging
       bucket: 'prueba-deploy'
       skip_cleanup: true
       local_dir: dist/
