@@ -23,9 +23,8 @@ jobs:
         provider: s3
         access_key_id: $AWS_ACCESS_KEY
         secret_access_key: $AWS_SECRET_ACCESS_KEY
-        bucket: 'prueba-deploy'
-        skip_cleanup: true
+        bucket: 'sec.anjrot.cl'
+        cleanup: true
         local_dir: dist/
-        commit_message: 'Deploy del proyecto'
 
   
