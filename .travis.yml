@@ -6,31 +6,26 @@ cache:
     - node_modules
     - ~/.npm
 
-stages:
-  - production
-  - staging
-  - name: test
-    if: type = push AND branch = staging
+before_script:
+  - npm install
 
 jobs:
-  include:
-    - stage: test
-      script: 
-        - echo 'Dentro del Estado de pruebas'
-        - echo 'Ejecuto la instalación de los componentes'
-        - npm install
-        - echo 'Ya instale ahora hago las pruebas'
-        - echo type
+  include:        
     - stage: staging
       script:
+        - echo 'Aquí debería ejecutar npm run test'
+        - echo "si todos los tests pasan seguimos adelante"
+      after_success:
         - npm run build
-      deploy: 
+      branches:
+        - staging        
+      deploy:
         provider: s3
         access_key_id: $AWS_ACCESS_KEY
         secret_access_key: $AWS_SECRET_ACCESS_KEY
-        bucket: 'sec.anjrot.cl'
+        bucket: 'prueba-deploy'
         skip_cleanup: true
         local_dir: dist/
         commit_message: 'Deploy del proyecto'
-        on:
-          branch: staging
+
+  
