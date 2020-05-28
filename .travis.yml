@@ -6,6 +6,14 @@ cache:
     - node_modules
     - ~/.npm
 
+stages:
+  - name: staging
+    # require the type to be a PR
+    if: type = push AND branch = staging
+  - name: production
+    # require the type to be push to master
+    if: type = push AND branch = master
+
 before_script:
   - npm install
 
@@ -18,8 +26,6 @@ jobs:
         - echo "si todos los tests pasan seguimos adelante"
       after_success:
         - npm run build
-      branches: 
-        - staging
       deploy:
         provider: s3
         access_key_id: $AWS_ACCESS_KEY
@@ -35,8 +41,6 @@ jobs:
         - echo "si todos los tests pasan seguimos adelante"
       after_success:
         - npm run build
-      branches: 
-        - master   
       deploy:
         provider: s3
         access_key_id: $AWS_ACCESS_KEY
