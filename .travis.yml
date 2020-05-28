@@ -9,6 +9,12 @@ cache:
 before_script:
   - npm install
 
+stages:
+  name: staging
+    if: branch = staging
+  name: production
+    if: branch = master
+
 jobs:
   include:        
     - stage: staging
