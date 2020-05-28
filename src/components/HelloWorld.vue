@@ -2,6 +2,9 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <p>Delectus enim saepe et aliquam provident mollitia culpa fugiat distinctio autem nisi numquam blanditiis amet eum neque voluptates qui quaerat, voluptatibus nobis?</p>
+    <div>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates voluptatibus fugiat consequuntur ducimus. Officia vel, minus minima, ut non perferendis nulla amet tempore neque distinctio quibusdam temporibus nesciunt. Consequatur, id!</p>
+    </div>
     
   </div>
 </template>
