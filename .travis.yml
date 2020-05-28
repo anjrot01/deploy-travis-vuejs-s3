@@ -9,11 +9,6 @@ cache:
 before_script:
   - npm install
 
-stages:
-  name: staging
-    if: branch = staging
-  name: production
-    if: branch = master
 
 jobs:
   include:        
@@ -22,7 +17,9 @@ jobs:
         - echo 'Aquí debería ejecutar npm run test'
         - echo "si todos los tests pasan seguimos adelante"
       after_success:
-        - npm run build    
+        - npm run build
+      branches: 
+        - staging
       deploy:
         provider: s3
         access_key_id: $AWS_ACCESS_KEY
@@ -31,14 +28,15 @@ jobs:
         keep_history: true
         bucket: 'sec.anjrot.cl'
         local_dir: dist/
-        on:
-          branch: staging
+
     - stage: production
       script:
         - echo 'Aquí debería ejecutar npm run test'
         - echo "si todos los tests pasan seguimos adelante"
       after_success:
-        - npm run build    
+        - npm run build
+      branches: 
+        - master   
       deploy:
         provider: s3
         access_key_id: $AWS_ACCESS_KEY
@@ -47,7 +45,5 @@ jobs:
         keep_history: true
         bucket: 'sec.anjrot.cl'
         local_dir: dist/
-        on:
-          branch: master
 
   
